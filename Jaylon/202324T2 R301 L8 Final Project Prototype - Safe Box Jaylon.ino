@@ -1,35 +1,26 @@
-int answer[3] = {-1, -1, -1};
-int LEDlist[3] = {11, 12, 13};  //LED pin numbers
-
-void setup() {
-	Serial.begin(115200);
+void setup()
+{
+	pinMode(3, OUTPUT);
+	pinMode(4, OUTPUT);
+	pinMode(5, OUTPUT);
+	pinMode(2, INPUT);
+	pinMode(6, INPUT);
+	pinMode(7, INPUT);
+	pinMode(8, INPUT);
 }
 
-void loop() {
-}
-
-void randomAnswer(){
-	Serial.println("Generate Random Answer");
-	//reset to -1
-	for(int i=0; i<3; i++) {
-		answer[i] = -1;
+void loop()
+{
+	if (digitalRead(7))
+	{
+		digitalWrite(3, HIGH);
+		digitalWrite(4, HIGH);
+		digitalWrite(5, HIGH);
 	}
-	
-	//random the answer list
-	answer[0] = LEDlist[random(0, 3)];
-	Serial.print(answer[0]);
-	Serial.print(",");
-	
-	do {
-		answer[1] = LEDlist[random(0, 3)];
-	} while(answer[1] == answer[0]);
-	Serial.print(answer[1]);
-	Serial.print(",");
-	
-	do {
-		answer[2] = LEDlist[random(0, 3)];
-	} while(answer[2] == answer[1] || answer[2] == answer[0]);
-	
-	Serial.print(answer[2]);
-	Serial.println();
+	else
+	{
+		digitalWrite(3, LOW);
+		digitalWrite(4, LOW);
+		digitalWrite(5, LOW);
+	}
 }
